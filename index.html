@@ -1,0 +1,67 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080307"><meta name="description" content="На любом языке. Только для тебя."><title>Только для тебя ♡</title><style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050205;color:#fff0f3;font-family:Arial,sans-serif}button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}button:focus-visible{outline:2px solid #ffc3d3;outline-offset:7px}main{height:100dvh;width:100%;position:relative;isolation:isolate}main:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,#52132930,transparent 60%);opacity:0;transition:opacity 5s}main.started:before{opacity:1}canvas{display:block;width:100%;height:100%}.intro{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:3;text-align:center;background:radial-gradient(ellipse at 50% 45%,#28101e 0, #0b040b 42%,#050205 75%);transition:opacity 1s,visibility 1s;padding:28px}.intro.hide{opacity:0;visibility:hidden;pointer-events:none}.eyebrow{font-size:10px;letter-spacing:4px;color:#b98a9a;text-transform:uppercase}.intro h1{font:400 clamp(32px,6vw,52px)/1.2 Georgia,serif;letter-spacing:-1px;margin:26px 0 14px}.intro p{color:#b99aa7;font-size:14px;line-height:1.8;margin:0 0 35px}.open{border:1px solid #a55a75;background:linear-gradient(135deg,#73334f,#37182c);border-radius:100px;padding:18px 34px;box-shadow:0 0 40px #e3548220;font-size:14px;letter-spacing:.5px;transition:transform .3s,box-shadow .3s}.open:hover{transform:translateY(-3px);box-shadow:0 0 55px #e3548245}.seal{width:110px;height:95px;margin-bottom:38px;position:relative;display:grid;place-items:center;animation:float 4s ease-in-out infinite}.envelope{width:100px;height:68px;border:1px solid #9c5871;border-radius:5px;background:linear-gradient(145deg,#432030,#1c0d18);position:absolute;box-shadow:0 12px 70px #ed6f9525}.envelope:before{content:'';position:absolute;width:69px;height:69px;border-right:1px solid #9c5871;border-bottom:1px solid #9c5871;transform:rotate(45deg);top:-35px;left:14px;background:linear-gradient(135deg,transparent 50%,#321725 50%)}.seal span{z-index:1;font-size:26px;color:#f49ab5;transform:translateY(10px);text-shadow:0 0 20px #ff729b}.topline{position:absolute;top:max(30px,env(safe-area-inset-top));left:0;right:0;text-align:center;opacity:0;transition:opacity 2s;color:#bd879e;font-size:10px;letter-spacing:3px;pointer-events:none}.started .topline{opacity:1}.ending{position:absolute;bottom:max(46px,calc(env(safe-area-inset-bottom) + 24px));left:20px;right:20px;text-align:center;opacity:0;transform:translateY(14px);transition:opacity 2s,transform 2s;pointer-events:none}.finished .ending{opacity:1;transform:none}.ending h2{font:400 clamp(24px,4vw,34px)/1.2 Georgia,serif;margin:0 0 12px}.ending p{font-size:12px;color:#be8a9f;margin:0}.replay{position:absolute;right:20px;top:max(22px,env(safe-area-inset-top));width:38px;height:38px;border:1px solid #68415366;border-radius:50%;background:#160a1266;color:#c792a6;font-size:20px;opacity:0;visibility:hidden;transition:opacity 1s}.finished .replay{opacity:1;visibility:visible}.hint{margin-top:18px;font-size:10px;letter-spacing:1px;color:#7d5969}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@keyframes float{50%{transform:translateY(-8px)}}@media(prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition:none!important}}@media(max-height:540px){.ending{bottom:16px}.ending h2{font-size:22px}.topline{top:16px}.seal{margin-bottom:12px}.intro h1{margin:12px 0}.intro p{margin-bottom:18px}}
+</style></head><body><main id="scene"><div class="topline">НА ЛЮБОМ ЯЗЫКЕ</div><canvas id="canvas" aria-label="Сердце из признаний в любви на разных языках"></canvas><section class="intro" id="intro"><div class="seal" aria-hidden="true"><div class="envelope"></div><span>♥</span></div><div class="eyebrow">Маленькое послание для тебя</div><h1>Есть кое-что,<br>что я хочу тебе сказать.</h1><p>Иногда одного языка недостаточно.</p><button class="open" id="open">Нажми сюда &nbsp;♡</button></section><div class="ending" aria-live="polite"><h2>На любом языке — я люблю тебя.</h2><p>И каждый раз эти слова — только для тебя.</p><div class="hint">КОСНИСЬ СЕРДЦА ♡</div></div><button class="replay" id="replay" aria-label="Посмотреть сначала">↻</button></main><script>
+'use strict';
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),scene=document.querySelector('#scene');
+const words=['Я тебя люблю','I love you','Je t’aime','Te amo','Ich liebe dich','Ti amo','Seni seviyorum','Eu te amo','사랑해','愛してる','Anh yêu em','Aku cinta kamu','Kocham cię','我爱你','Я тебе кохаю','Σ’ αγαπώ','ฉันรักเธอ','Jag älskar dig','Te iubesc','मैं तुमसे प्यार करता हूँ','Ik hou van jou','أحبك','אני אוהב אותך','Szeretlek','Miluji tě','Ľúbim ťa','Volim te','Ljubim te','Обичам те','Те сакам','Я цябе кахаю','Aš tave myliu','Es tevi mīlu','Ma armastan sind','Rakastan sinua','Jeg elsker deg','Jeg elsker dig','Ég elska þig','T’estimo','Quérote','Maite zaitut','Rwy’n dy garu di','Tá grá agam duit','Inħobbok','Të dua','Seni sevirəm','Мен сені сүйемін','Seni sevaman','მიყვარხარ','Ես քեզ սիրում եմ','دوستت دارم','میں تم سے محبت کرتا ہوں','আমি তোমাকে ভালোবাসি','Mahal kita','Tôi yêu bạn','Saya sayang kamu','Nakupenda','Ngiyakuthanda','Ek is lief vir jou','Mi amas vin','Aloha wau iā ʻoe','Aroha ahau ki a koe'];
+const colors=['#ec536f','#fa7890','#e84c6e','#f693aa','#d84667','#ffb0c3'];
+let width=0,height=0,scale=1,items=[],start=0,raf=0,active=false,complete=false,particles=[],lastFrame=0;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+function heartPoint(t){return{x:288*Math.sin(t)**3,y:-18*(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))-45};}
+const boundary=Array.from({length:360},(_,i)=>heartPoint(i*Math.PI*2/360));
+function inside(x,y){let hit=false;for(let i=0,j=boundary.length-1;i<boundary.length;j=i++){const a=boundary[i],b=boundary[j];if((a.y>y)!=(b.y>y)&&x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x)hit=!hit;}return hit;}
+// Horizontal intersections of the same symmetric curve used by the animation.
+function spansAt(y){const xs=[];for(let i=0,j=boundary.length-1;i<boundary.length;j=i++){const a=boundary[i],b=boundary[j];if((a.y>y)!=(b.y>y))xs.push(a.x+(y-a.y)*(b.x-a.x)/(b.y-a.y));}xs.sort((a,b)=>a-b);const spans=[];for(let i=0;i+1<xs.length;i+=2)spans.push([xs[i],xs[i+1]]);return spans;}
+function intersectSpans(a,b){const out=[];for(const l of a)for(const r of b){const lo=Math.max(l[0],r[0]),hi=Math.min(l[1],r[1]);if(hi>lo)out.push([lo,hi]);}return out;}
+function build(){
+ items=[];let seed=537;const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};const used=words.map(()=>0),base=12.5,gap=3;
+ ctx.font=`600 ${base}px Arial,sans-serif`;const widths=words.map(text=>ctx.measureText(text).width);
+ // Try different phrase orders before committing a row. Every completed row
+ // occupies its exact available width; font adjustment remains small.
+ function fit(target){let best=null;
+  for(let attempt=0;attempt<100;attempt++){
+   const list=[],local=new Set();let sum=0;
+   while(list.length<24){
+    const candidates=words.map((_,i)=>i).filter(i=>widths[i]>0&&!local.has(i)&&(sum+widths[i]+gap*list.length)<=target*1.065);
+    if(!candidates.length)break;
+    candidates.sort((a,b)=>(used[a]-used[b])||a-b);
+    const pool=candidates.slice(0,Math.min(14,candidates.length));const i=pool[Math.floor(rand()*pool.length)];list.push(i);local.add(i);sum+=widths[i];
+    const factor=(target-gap*(list.length-1))/sum;
+    if(factor>=.93&&factor<=1.035){const cost=list.reduce((n,i)=>n+used[i],0)/list.length+Math.abs(1-factor)*12+rand()*.15;if(!best||cost<best.cost)best={list:list.slice(),factor,cost};}
+   }
+  }
+  if(best)return best;
+  const order=words.map((_,i)=>i).filter(i=>widths[i]>0).sort((a,b)=>widths[a]-widths[b]);const i=order.find(i=>widths[i]>=target*.95)||order[0];return{list:[i],factor:Math.min(1.035,target/widths[i])};
+ }
+ for(let row=0;row<35;row++){
+  const y=-253+row*15;
+  const spans=intersectSpans(intersectSpans(spansAt(y),spansAt(y-5.8)),spansAt(y+5.8));
+  for(const [lo,hi]of spans){const target=hi-lo-2;if(target<14)continue;const packed=fit(target);let x=lo+1;
+   packed.list.forEach((index,k)=>{const w=widths[index]*packed.factor;const p={text:words[index],index,x:x+w/2,y,size:base*packed.factor,w,color:colors[(row+k)%colors.length],edge:k===0||k===packed.list.length-1,row};items.push(p);used[index]++;x+=w+gap;});
+  }
+ }
+ // Distance to the actual outline defines inward-moving layers, including
+ // the upper cleft and both lobes, rather than a top-to-bottom scan.
+ for(const p of items){let d=Infinity,nearest=0;boundary.forEach((b,i)=>{const v=(p.x-b.x)**2+(p.y-b.y)**2;if(v<d){d=v;nearest=i;}});p.depth=Math.sqrt(d);p.order=nearest;}
+ const outline=items.filter(p=>p.edge).sort((a,b)=>a.order-b.order);
+ outline.forEach((p,i)=>p.at=300+i/Math.max(1,outline.length-1)*5400);
+ const fill=items.filter(p=>!p.edge).sort((a,b)=>a.depth-b.depth||a.order-b.order);
+ fill.forEach((p,i)=>p.at=6450+i/Math.max(1,fill.length-1)*6200);
+}
+function resize(){const r=canvas.getBoundingClientRect();width=r.width;height=r.height;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);scale=Math.min((width-36)/600,(height-190)/610,1.35);scale=Math.max(.15,scale);build();if(active)draw(performance.now());}
+function burst(x=width/2,y=height/2,count=45){if(reduced.matches)return;for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,s=1+Math.random()*3;particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1,size:1+Math.random()*2});}particles=particles.slice(-160);}
+function draw(now){cancelAnimationFrame(raf);if(!active||document.hidden)return;const dt=Math.min(2,(now-lastFrame)/16.67||1);lastFrame=now;const elapsed=reduced.matches?15000:now-start;ctx.clearRect(0,0,width,height);const cy=height/2-12;const pulse=elapsed>13000&&!reduced.matches?1+.012*Math.sin((elapsed-13000)/650):1;
+ ctx.save();ctx.translate(width/2,cy);ctx.scale(scale*pulse,scale*pulse);
+
+ ctx.textAlign='center';ctx.textBaseline='middle';
+ for(const p of items){const age=elapsed-p.at;if(age<0)continue;ctx.globalAlpha=Math.min(1,age/260);ctx.font=`600 ${p.size}px Arial,sans-serif`;ctx.direction=/[\u0590-\u08ff]/.test(p.text)?'rtl':'ltr';ctx.fillStyle=age<430?'#ffe2ed':p.color;const drift=reduced.matches?0:Math.max(0,1-age/450)*5;ctx.fillText(p.text,p.x,p.y+drift);}
+ ctx.restore();
+ if(elapsed>=13000&&!complete){complete=true;scene.classList.add('finished');burst(width/2,cy,65);}
+ if(!reduced.matches){for(let i=0;i<22;i++){const a=i*2.39996,t=now*.00012;const x=width/2+Math.cos(a+t)*(90+i*8)*scale,y=cy+Math.sin(a+t)*(100+i*8)*scale;ctx.globalAlpha=(.2+.2*Math.sin(now*.001+i))*Math.min(1,elapsed/6000);ctx.fillStyle='#ffafcb';ctx.beginPath();ctx.arc(x,y,i%3===0?1.4:.7,0,Math.PI*2);ctx.fill();}
+ for(const p of particles){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.014*dt;p.life-=.012*dt;ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle='#ffa2c2';ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();}particles=particles.filter(p=>p.life>0);}
+ ctx.globalAlpha=1;if(!reduced.matches)raf=requestAnimationFrame(draw);
+}
+function begin(){active=true;complete=false;particles=[];start=performance.now()+650;lastFrame=start;scene.classList.add('started');scene.classList.remove('finished');document.querySelector('#intro').classList.add('hide');document.querySelector('#open').disabled=true;draw(performance.now());}
+function replay(){active=false;cancelAnimationFrame(raf);ctx.clearRect(0,0,width,height);scene.classList.remove('started','finished');document.querySelector('#intro').classList.remove('hide');document.querySelector('#open').disabled=false;document.querySelector('#open').focus();}
+ document.querySelector('#open').addEventListener('click',begin);document.querySelector('#replay').addEventListener('click',replay);canvas.addEventListener('pointerdown',e=>{if(active)burst(e.clientX,e.clientY,45);});window.addEventListener('resize',resize);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&active){lastFrame=performance.now();draw(lastFrame);}else cancelAnimationFrame(raf);});reduced.addEventListener('change',()=>{if(active)draw(performance.now());});resize();
+</script></body></html>
